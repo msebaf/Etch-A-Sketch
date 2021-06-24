@@ -1,0 +1,27 @@
+#mainContainer{
+    justify-content: center;
+}
+
+
+
+#butcont{
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.squareBlue {
+
+    width : 30px;
+    height : 30px;
+    border : 4px solid black;
+    background-color : blue;
+}
+
+.squareRed {
+
+    width : 30px;
+    height : 30px;
+    border : 4px solid black;
+    background-color : red;
+}
