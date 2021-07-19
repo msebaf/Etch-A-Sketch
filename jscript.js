@@ -1,77 +1,78 @@
+const clearButton = document.querySelector("#restartGrid").addEventListener("click", function(e){
+    clearGrid()
+});
 
+const customButton = document.querySelector("#customizeGrid").addEventListener("click", function(e){
+    createCustomGrid()
+});
 
-const mainMaincontainer = document.querySelector("#mainMainContainer")
-const container = document.querySelector("#mainContainer");
- container.style.display = "flex"
- 
-const clearButon = document.querySelector("#clear").addEventListener("click", function(e){
-    makeBlueAgain();
-})
- 
-const newGridButton = document.querySelector("#newGrid").addEventListener("click", function(e){
+const gridContainer = document.querySelector("#gridContainer");
 
-newGrid()})
- 
- 
- function  fillGrid(nombreLinea, b){
-    if (!b){
-        b=16
+function createGrid(lines, rows){
+
+    if (!lines) {
+        lines=16;
+        
     }
+    else if (lines>100 ){
+        lines = 100;
 
-    for (let i=1; i<=b; i++){
-        const div = document.createElement("div");
-        div.setAttribute("class", "squareBlue");
-        div.addEventListener("mouseover", function(e){
-        div.setAttribute("class", "squareRed")
-        })
-        
-        nombreLinea.appendChild(div);
-        
     }
     
+    for (let i = 0; i < lines; i++) {
+        const newRow = document.createElement("div");
+        newRow.setAttribute("class", "row");
+        gridContainer.appendChild(newRow);
+       fillRow(newRow, rows)
+        
+    }
 }
 
-function createGrid(a, b) {
-   if (!a){
-       a=16;
-       
-       
-   } 
+
+function fillRow(newRow, rows){
    
-    for (let i=1; i<=a; i++){
-        const newLine= document.createElement("div");
-        newLine.setAttribute("id", "line")
-        container.appendChild(newLine)
-        fillGrid(newLine, b);
-      
+    if (!rows) {
+        rows=16;
+        
     }
-    
+    else if (rows>100 ){
+        rows = 100;
+
+    }
+    for (let i = 0; i < rows; i++) {
+        
+        const newSquare = document.createElement("div");
+        newSquare.setAttribute("class", "newSquare");
+        newSquare.addEventListener("mouseover", function(e){
+            newSquare.setAttribute("class", "newSquareHovered")
+        })
+        newRow.appendChild(newSquare);
+        
+        
+        
+    }
+
+} 
+
+function clearGrid(){
+
+const redSquares= document.querySelectorAll(".newSquareHovered");
+for (let index = 0; index < redSquares.length; index++) {
+    const element = redSquares[index];
+    element.setAttribute("class", "newSquare")
+}
 }
 
-function makeBlueAgain(){
-    const reded = container.querySelectorAll(".squareRed")
-    console.log(reded)
-    console.log(reded.length)
-    for (let index = 0; index < reded.length; index++) {
-        const element = reded[index];
-        element.setAttribute("class", "squareBlue")
-    }
+function createCustomGrid(){
+
+const delet = document.querySelectorAll(".row")
+for (let i = 0; i < delet.length; i++) {
+    gridContainer.removeChild(delet[i])
+    
 }
+createGrid(prompt("vertical? (Max 100)"), prompt("horizontal? (Max 100)"))
 
-function newGrid(){
-    
-        const lines = container.querySelectorAll("#line")
-            for (let index = 0; index < lines.length; index++) {
-            container.removeChild(lines[index])
-            
-    }
-    createGrid(prompt("horizontal?"), prompt("vertical?"))
-    
-    
-    
-    }    
-    
-
+}
 
 
     
